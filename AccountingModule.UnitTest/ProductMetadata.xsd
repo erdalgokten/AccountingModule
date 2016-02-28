@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ProductMetadata"
+    targetNamespace="http://tempuri.org/ProductMetadata.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/ProductMetadata.xsd"
+    xmlns:mstns="http://tempuri.org/ProductMetadata.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:simpleType name="stAllowedTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Decimal"/>
+      <xs:enumeration value="String"/>
+      <xs:enumeration value="Int32"/>
+      <xs:enumeration value="DateTime"/>
+      <xs:enumeration value="TimeSpan"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="stSpecialValues">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CurrentDate"/>
+      <xs:enumeration value="CurrentTime"/>
+      <xs:enumeration value="CurrentDateTime"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="ctTableField">
+    <xs:attribute name="fieldName" type="xs:string" use="required"/>
+    <xs:attribute name="fieldType" type="mstns:stAllowedTypes" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="ctLiteralField">
+    <xs:attribute name="fieldName" type="xs:string" use="optional"/>
+    <xs:attribute name="fieldType" type="mstns:stAllowedTypes" use="required"/>
+    <xs:attribute name="fieldValue" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="ctSpecialField">
+    <xs:attribute name="fieldName" type="xs:string" use="optional"/>
+    <xs:attribute name="fieldValue" type="mstns:stSpecialValues" use="required"/>
+  </xs:complexType>
+
+  <xs:group name="grComplexField">
+    <xs:choice>
+      <xs:element name="addition" type="mstns:ctComplexField"/>
+      <xs:element name="multiplication" type="mstns:ctComplexField"/>
+      <xs:element name="literalField" type="mstns:ctLiteralField"/>
+      <xs:element name="tableField" type="mstns:ctTableField"/>
+      <xs:element name="specialField" type="mstns:ctSpecialField"/>
+    </xs:choice>
+  </xs:group>
+  
+  <xs:complexType name="ctComplexField">
+    <xs:group ref="mstns:grComplexField" minOccurs="2" maxOccurs="unbounded"/>
+  </xs:complexType>
+
+  <xs:complexType name="ctComplexFieldSingle">
+    <xs:group ref="mstns:grComplexField" minOccurs="1" maxOccurs="1"/>
+  </xs:complexType>
+
+  <xs:complexType name="ctSimpleCondition">
+    <xs:sequence>
+      <xs:element name="sourceField" type="mstns:ctComplexFieldSingle"/>
+      <xs:element name="targetField" type="mstns:ctComplexFieldSingle"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:group name="grComplexCondition">
+    <xs:choice>
+      <xs:element name="and" type="mstns:ctComplexCondition"/>
+      <xs:element name="or" type="mstns:ctComplexCondition"/>
+      <xs:element name="isEqual" type="mstns:ctSimpleCondition"/>
+      <xs:element name="isGreater" type="mstns:ctSimpleCondition"/>
+      <xs:element name="isLess" type="mstns:ctSimpleCondition"/>
+      <xs:element name="isNotEqual" type="mstns:ctSimpleCondition"/>
+      <xs:element name="isGreaterOrEqual" type="mstns:ctSimpleCondition"/>
+      <xs:element name="isLessOrEqual" type="mstns:ctSimpleCondition"/>
+    </xs:choice>
+  </xs:group>
+  
+  <xs:complexType name="ctComplexCondition">
+    <xs:group ref="mstns:grComplexCondition" minOccurs="2" maxOccurs="unbounded"/>
+  </xs:complexType>
+
+  <xs:complexType name="ctEventDefinitions">
+    <xs:sequence>
+      <xs:element name="eventDefinition" minOccurs="1" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:group ref="mstns:grComplexCondition" minOccurs="1" maxOccurs="1"/>
+          <xs:attribute name="id" type="xs:ID" use="required"/>
+          <xs:attribute name="isOnline" type="xs:boolean" use="required"/>
+          <xs:attribute name="reactionIds" type="xs:IDREFS" use="required"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ctEventReactions">
+    <xs:sequence>
+      <xs:element name="eventReaction" minOccurs="1" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="fieldMatch" minOccurs="1" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="sourceField" type="mstns:ctComplexFieldSingle"/>
+                  <xs:element name="targetField">
+                    <xs:complexType>
+                      <xs:sequence minOccurs="1" maxOccurs="1">
+                        <xs:element name="tableField" type="mstns:ctTableField"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+          <xs:attribute name="id" type="xs:ID"/>
+          <xs:attribute name="reactionType">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="Insert"/>
+                <!--<xs:enumeration value="Update"/>-->
+                <!--<xs:enumeration value="Delete"/>-->
+                <!--<xs:enumeration value="Upsert"/>-->
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="product">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="productName" type="xs:string"/>
+        <xs:element name="eventDefinitions" type="mstns:ctEventDefinitions"/>
+        <xs:element name="eventReactions" type="mstns:ctEventReactions"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

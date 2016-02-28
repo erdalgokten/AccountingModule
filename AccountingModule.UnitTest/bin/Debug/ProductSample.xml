@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<product xmlns="http://tempuri.org/ProductMetadata.xsd">
+
+  <productName>ProductSample</productName>
+
+  <eventDefinitions>
+    
+    <eventDefinition id="Erdal12" isOnline="false" reactionIds="Reaction1">
+      <isEqual>
+        <sourceField>
+          <literalField fieldName="NewRecord" fieldType="Decimal" fieldValue="1"/>
+        </sourceField>
+        <targetField>
+          <literalField fieldName="NewRecord" fieldType="Int32" fieldValue="1"/>
+        </targetField>
+      </isEqual>
+    </eventDefinition>
+    <eventDefinition id="Erdal123" isOnline="false" reactionIds="Reaction1 Reaction2">
+      <and>
+        <or>
+          <isGreater>
+            <sourceField>
+              <tableField fieldName="Amount" fieldType="Decimal"/>
+            </sourceField>
+            <targetField>
+              <literalField fieldType="Decimal" fieldValue="2000"/>
+            </targetField>
+          </isGreater>
+          <isLess>
+            <sourceField>
+              <tableField fieldName="DealPrice" fieldType="Decimal"/>
+            </sourceField>
+            <targetField>
+              <literalField fieldType="Decimal" fieldValue="1"/>
+            </targetField>
+          </isLess>
+        </or>
+        <isEqual>
+          <sourceField>
+            <tableField fieldName="DealerID" fieldType="String"/>
+          </sourceField>
+          <targetField>
+            <literalField fieldType="String" fieldValue="Somebody"/>
+          </targetField>
+        </isEqual>
+      </and>
+    </eventDefinition>
+  </eventDefinitions>
+
+  <eventReactions>
+    <eventReaction id="Reaction1" reactionType="Insert">
+      <fieldMatch>
+        <sourceField>
+          <literalField fieldType="String" fieldValue="Key1"/>
+        </sourceField>
+        <targetField>
+          <tableField fieldName="AccountingKey" fieldType="String"/>
+        </targetField>
+      </fieldMatch>
+      <fieldMatch>
+        <sourceField>
+          <literalField fieldType="String" fieldValue="GroupKey1"/>
+        </sourceField>
+        <targetField>
+          <tableField fieldName="AccountingGroupKey" fieldType="String"/>
+        </targetField>
+      </fieldMatch>
+      <fieldMatch>
+        <sourceField>
+          <multiplication>
+            <literalField fieldType="Decimal" fieldValue="-1"/>
+            <tableField fieldName="Amount" fieldType="Decimal"/>
+          </multiplication>
+        </sourceField>
+        <targetField>
+          <tableField fieldName="Amount" fieldType="Decimal"/>
+        </targetField>
+      </fieldMatch>
+      <fieldMatch>
+        <sourceField>
+          <tableField fieldName="DealPrice" fieldType="Decimal"/>
+        </sourceField>
+        <targetField>
+          <tableField fieldName="Price" fieldType="Decimal"/>
+        </targetField>
+      </fieldMatch>
+    </eventReaction>
+    <eventReaction id="Reaction2" reactionType="Insert">
+      <fieldMatch>
+        <sourceField>
+          <literalField fieldType="String" fieldValue="Key1"/>
+        </sourceField>
+        <targetField>
+          <tableField fieldName="AccountingKey" fieldType="String"/>
+        </targetField>
+      </fieldMatch>
+      <fieldMatch>
+        <sourceField>
+          <literalField fieldType="String" fieldValue="GroupKey1"/>
+        </sourceField>
+        <targetField>
+          <tableField fieldName="AccountingGroupKey" fieldType="String"/>
+        </targetField>
+      </fieldMatch>
+      <fieldMatch>
+        <sourceField>
+          <multiplication>
+            <specialField fieldName="Deneme" fieldValue="CurrentDate"/>
+            <literalField fieldType="Decimal" fieldValue="-1"/>
+            <tableField fieldName="Amount" fieldType="Decimal"/>
+          </multiplication>
+        </sourceField>
+        <targetField>
+          <tableField fieldName="Amount" fieldType="Decimal"/>
+        </targetField>
+      </fieldMatch>
+      <fieldMatch>
+        <sourceField>
+          <tableField fieldName="DealPrice" fieldType="Decimal"/>
+        </sourceField>
+        <targetField>
+          <tableField fieldName="Price" fieldType="Decimal"/>
+        </targetField>
+      </fieldMatch>
+    </eventReaction>
+  </eventReactions>
+  
+</product>

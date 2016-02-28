@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingModule", "AccountingModule\AccountingModule.csproj", "{49EDEFAC-47C0-4987-A0C5-0659C699510A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingModule.UnitTest", "AccountingModule.UnitTest\AccountingModule.UnitTest.csproj", "{0A303954-AF19-4034-B02C-E3A1694799A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49EDEFAC-47C0-4987-A0C5-0659C699510A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49EDEFAC-47C0-4987-A0C5-0659C699510A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49EDEFAC-47C0-4987-A0C5-0659C699510A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49EDEFAC-47C0-4987-A0C5-0659C699510A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A303954-AF19-4034-B02C-E3A1694799A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A303954-AF19-4034-B02C-E3A1694799A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A303954-AF19-4034-B02C-E3A1694799A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A303954-AF19-4034-B02C-E3A1694799A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,12 @@
+C:\Users\erdal\Desktop\AccountingProject\AccountingModule\AccountingModule\bin\Debug\AccountingModule.dll
+C:\Users\erdal\Desktop\AccountingProject\AccountingModule\AccountingModule\bin\Debug\AccountingModule.pdb
+C:\Users\erdal\Desktop\AccountingProject\AccountingModule\AccountingModule\obj\Debug\AccountingModule.dll
+C:\Users\erdal\Desktop\AccountingProject\AccountingModule\AccountingModule\obj\Debug\AccountingModule.pdb
+C:\Users\erdal\Desktop\AccountingProject\AccountingModule\AccountingModule\bin\Debug\ProductMetadata.xsd
+C:\Users\erdal\Desktop\AccountingProject\AccountingModule\AccountingModule\obj\Debug\AccountingModule.csprojResolveAssemblyReference.cache
+C:\Users\erdal\Documents\GitHub\AccountingModule\AccountingModule\bin\Debug\ProductMetadata.xsd
+C:\Users\erdal\Documents\GitHub\AccountingModule\AccountingModule\bin\Debug\AccountingModule.dll
+C:\Users\erdal\Documents\GitHub\AccountingModule\AccountingModule\bin\Debug\AccountingModule.pdb
+C:\Users\erdal\Documents\GitHub\AccountingModule\AccountingModule\obj\Debug\AccountingModule.csprojResolveAssemblyReference.cache
+C:\Users\erdal\Documents\GitHub\AccountingModule\AccountingModule\obj\Debug\AccountingModule.dll
+C:\Users\erdal\Documents\GitHub\AccountingModule\AccountingModule\obj\Debug\AccountingModule.pdb
